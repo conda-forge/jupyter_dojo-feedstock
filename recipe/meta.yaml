@@ -1,10 +1,10 @@
-{% set name = "ipython_unittest" %}
-{% set version = "0.2.6" %}
-{% set sha256 = "a84829d2f58e07ff60661586c3d3a306dfde2a32051d902f43b1f563a18fce0a" %}
+{% set name = "jupyter_dojo" %}
+{% set version = "0.3.0" %}
+{% set sha256 = "0173ba4b603b4751a4e3bfc0139927fdfff0e73b39fdb46d3b68c6cb5162f7e3" %}
 
 
 package:
-  name: jupyter_dojo
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
@@ -14,24 +14,25 @@ source:
 build:
   number: 0
   script:
-    - jupyter nbextension install ipython_unittest --py --sys-prefix --overwrite
+    - python setup.py install --single-version-externally-managed --record record.txt
+    - jupyter nbextension install jupyter_dojo --py --sys-prefix --overwrite
 
 requirements:
   build:
     - python
-    - ipython_unittest
-    - notebook >=4.0
+    - ipython_unittest >= 0.3
+    - notebook >=4.3
     - jupyter
 
   run:
     - python
-    - notebook >=4.0
+    - notebook >=4.3
     - jupyter
     - ipython_unittest
 
 test:
   imports:
-    - ipython_unittest
+    - jupyter_dojo
 
 about:
   home: https://github.com/JoaoFelipe/ipython-unittest
