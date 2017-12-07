@@ -1,6 +1,6 @@
 {% set name = "jupyter_dojo" %}
-{% set version = "0.3.0" %}
-{% set sha256 = "0173ba4b603b4751a4e3bfc0139927fdfff0e73b39fdb46d3b68c6cb5162f7e3" %}
+{% set version = "0.3.2" %}
+{% set sha256 = "a473ba827fcbf8f99c86373c7863b95e308ecc9c9efafe1ddd4180310efcaa8e" %}
 
 
 package:
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   script:
     - python setup.py install --single-version-externally-managed --record record.txt
     - jupyter nbextension install jupyter_dojo --py --sys-prefix --overwrite
