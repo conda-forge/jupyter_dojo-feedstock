@@ -1,29 +1,26 @@
-{% set name = "jupyter_dojo" %}
 {% set version = "0.3.2" %}
-{% set sha256 = "a473ba827fcbf8f99c86373c7863b95e308ecc9c9efafe1ddd4180310efcaa8e" %}
-
 
 package:
-  name: {{ name|lower }}
+  name: jupyter_dojo
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://pypi.io/packages/source/j/jupyter_dojo/jupyter_dojo-{{ version }}.tar.gz
+  sha256: a473ba827fcbf8f99c86373c7863b95e308ecc9c9efafe1ddd4180310efcaa8e
 
 build:
-  number: 1000
+  number: 1
+  noarch: python
   script:
-    - python setup.py install --single-version-externally-managed --record record.txt
+    -"{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
     - jupyter nbextension install jupyter_dojo --py --sys-prefix --overwrite
 
 requirements:
-  build:
+  host:
     - python
     - ipython_unittest >=0.3
     - notebook >=4.3
     - jupyter
-
   run:
     - python
     - notebook >=4.3
