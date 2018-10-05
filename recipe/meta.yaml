@@ -18,6 +18,7 @@ build:
 requirements:
   host:
     - python
+    - pip
     - ipython_unittest >=0.3
     - notebook >=4.3
     - jupyter
